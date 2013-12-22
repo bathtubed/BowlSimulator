@@ -1,0 +1,48 @@
+char PINS
+UINT8 PIN_ID
+UINT16 AVG
+
+ROLL 0
+SPARE 1
+BONUS 2
+
+inline PIN_ID PIN(id)
+  return 2 << (id);
+
+PinSet
+  static const float GetWeight(PIN_ID)
+  const PIN_ID GetHighestPin()
+  UINT16 pins // bitfield
+  resetPins() // sets pins to have all 10 pins up
+  getPin(PIN_ID id) // returns state of pin number id
+  knockDown(UINT16 p) // exclusive or's p with pins
+  PINS getPinCount()
+
+Frame
+  PinSet pins
+  PINS *roll;
+  PINS total
+  
+  enum {FIRST, SECOND, COMPLETE} stage
+  bool mark
+  
+  Roll(PINS *n)
+    normalizes each pin and calculates which ones were knocked down
+  
+  GetStage()
+  
+  GetTotal()
+    if mark is true
+      return total = roll[ROLL] + roll[SPARE] + roll[BONUS]
+    else
+      return total = roll[ROLL] + roll[SPARE]
+      
+  
+  
+  
+  
+  
+  
+    
+    
+    
