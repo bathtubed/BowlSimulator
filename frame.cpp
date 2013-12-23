@@ -2,7 +2,7 @@
 
 const int Frame::Roll(PINS * const n)
 {
-  if(*n > pins.getPinCount() || n==NULL)
+  if(*n > pins.getPinCount() || n==NULL || stage==COMPLETE)
     return FAIL;
   if(stage == FIRST)
     roll = n;
@@ -37,7 +37,30 @@ const int Frame::Roll(PINS * const n)
 	break;
       }
     }
+  }	
+  
+  int rtrn;
+  
+  if(mark && stage==FIRST)
+  {
+    stage = COMPLETE;
+    rtrn = STRIKE;
+  }
+  else if(mark && stage==SECOND)
+  {
+    stage = COMPLETE;
+    rtrn = SUCCESS;
+  }
+  else if(stage == FIRST)
+  {
+    stage = SECOND;
+    rtrn = SUCCESS;
+  }
+  else
+  {
+    stage = COMPLETE;
+    rtrn = SUCCESS;
   }
   
-  return mark && stage==FIRST? STRIKE:SUCCESS;
+  return rtrn;
 }

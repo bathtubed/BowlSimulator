@@ -16,7 +16,7 @@ public:
   PinSet() {resetPins();};
   static const UINT16 maskPin(const PIN_ID id) {return 2<<id;};  // applies bit mask for pinset pin
   static const float GetWeight(const PIN_ID id);
-  void resetPins() {pins = 2<<N_PINS - 1;}; // sets pins to have all 10 pins up
+  void resetPins() {pins = (2<<N_PINS) - 1;}; // sets pins to have all 10 pins up
   const bool getPin(const PIN_ID id) const {return pins & maskPin(id);}; // returns state of pin at id
   const bool knockDown(const UINT16 p); // exclusive or's p with pins, knocking them down
   const PINS getPinCount() const;  // returns number of up pins

@@ -14,7 +14,7 @@ typedef UINT16 AVG;
 typedef UINT8 PIN_ID;
 typedef char PINS;
 
-float getRand() {return rand()/RAND_MAX;};
+inline float getRand() {return float(rand())/float(RAND_MAX);};
 
 // Important constants
 #define N_PINS 10

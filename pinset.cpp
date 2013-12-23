@@ -16,9 +16,9 @@ const float PinSet::GetWeight(const PIN_ID id)
     float value;
     while(fscanf(fp, "%d:%f", &key, &value) != EOF)
     {
-      if(key >= N_PINS)
+      if(key > N_PINS)
 	continue;
-      weights[key] = value;
+      weights[key-1] = value;
     }
     fclose(fp);
     loaded = true;
@@ -32,7 +32,7 @@ const float PinSet::GetWeight(const PIN_ID id)
 
 const bool PinSet::knockDown(const UINT16 p)
 {
-  return p >= maskPin(N_PINS)? false:(pins ^= p? true:true);  //ouch that code tho
+  return p >= maskPin(N_PINS)? false:((pins ^= p)? true:true);  //ouch that code tho
 }
 
 const PINS PinSet::getPinCount() const
