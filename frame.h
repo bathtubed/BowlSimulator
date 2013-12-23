@@ -18,7 +18,7 @@ private:
   mutable PINS total;
   
 public:
-  const Stage_t getStage() const {return stage;};
+  const Stage_t GetStage() const {return stage;};
   const PINS GetTotal() const {return total = (mark? (roll[ROLL] + roll[SPARE] + roll[BONUS]):(roll[ROLL] + roll[SPARE]));};
   const PinSet GetPinSet() const {return pins;};
   const int Roll(PINS * const n);

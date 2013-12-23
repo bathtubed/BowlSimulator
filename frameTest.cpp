@@ -18,6 +18,7 @@ int main(void)
   int rslt;
   for(UINT8 f = 0, r = 0; f < N_FRAMES; f++)
   {
+    std::cout<<"Frame "<<int(f)<<std::endl;
     std::cout<<"First Roll: ";
     std::cin>>p;
     rolls[r] = p;
@@ -43,7 +44,7 @@ int main(void)
      
     }
     
-    if(game[f].GetPinSet().getPinCount() == 0)
+    if(game[f].GetPinSet().getPinCount() == 0 && game[f].GetStage() == Frame::SECOND)
       std::cout<<"Spare!"<<std::endl;
     
     printPins(game[f].GetPinSet());
