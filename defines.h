@@ -18,6 +18,7 @@ float getRand() {return rand()/RAND_MAX;};
 
 // Important constants
 #define N_PINS 10
+#define N_FRAMES 10
 
 // Important Files
 #define PIN_WEIGHTS "pin_weights.txt"
