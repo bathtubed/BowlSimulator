@@ -37,7 +37,7 @@ Frame
     else
       return total = roll[ROLL] + roll[SPARE]
       
-  
+  GetPinSet()
   
   
   
