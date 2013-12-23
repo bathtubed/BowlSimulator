@@ -22,7 +22,7 @@ public:
   const PinSet GetPinSet() const {return pins;};
   const bool Roll(PINS * const n);
   
-  frame(PINS * const init=NULL): roll(init) {};
+  Frame(PINS * const init=NULL): roll(init) {};
   
 };
 
