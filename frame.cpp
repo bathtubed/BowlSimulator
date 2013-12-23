@@ -1,6 +1,6 @@
 #include "frame.h"
 
-const bool frame::Roll(PINS * const n)
+const bool Frame::Roll(PINS * const n)
 {
   if(*n > pins.getPinCount() || n==NULL)
     return false;

@@ -3,7 +3,7 @@
 
 #include "pinset.h"
 
-class frame
+class Frame
 {
 public:
   typedef enum {FIRST=0, SECOND, COMPLETE} Stage_t;
