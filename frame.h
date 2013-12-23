@@ -6,7 +6,7 @@
 class frame
 {
 public:
-  enum {FIRST=0, SECOND, COMPLETE} Stage_t;
+  typedef enum {FIRST=0, SECOND, COMPLETE} Stage_t;
   enum {ROLL=0, SPARE, BONUS};
   
 private:
@@ -22,7 +22,7 @@ public:
   const PinSet GetPinSet() const {return pins;};
   const bool Roll(PINS * const n);
   
-  frame(roll * const init=NULL): roll(init) {};
+  frame(PINS * const init=NULL): roll(init) {};
   
 };
 

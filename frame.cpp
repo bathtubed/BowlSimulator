@@ -18,7 +18,7 @@ const bool frame::Roll(PINS * const n)
     r = getRand() * sumWeights;
     for(PIN_ID q = 0; q < N_PINS; q++)
     {
-      if(!getPin(q))
+      if(!pins.getPin(q))
 	continue;
       
       r -= PinSet::GetWeight(q);
@@ -29,9 +29,9 @@ const bool frame::Roll(PINS * const n)
 	sumWeights -= PinSet::GetWeight(q);
 	break;
       }
-      
-      //TODO: This
             
     }
   }
+  
+  return true;
 }
