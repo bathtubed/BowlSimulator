@@ -1,13 +1,20 @@
 #include "frame.h"
 
-const bool Frame::Roll(PINS * const n)
+const int Frame::Roll(PINS * const n)
 {
   if(*n > pins.getPinCount() || n==NULL)
-    return false;
-  roll = n;
+    return FAIL;
+  if(stage == FIRST)
+    roll = n;
+  
+  if(GetTotal() >= N_PINS && !mark)
+    mark = true;
+  
   float sumWeights = 0.0, r;
   for(PIN_ID i = 0; i < N_PINS; i++)
   {
+    if(!pins.getPin(i))
+      continue;
     sumWeights += PinSet::GetWeight(i);
   }
   
@@ -29,9 +36,8 @@ const bool Frame::Roll(PINS * const n)
 	sumWeights -= PinSet::GetWeight(q);
 	break;
       }
-            
     }
   }
   
-  return true;
+  return mark && stage==FIRST? STRIKE:SUCCESS;
 }
