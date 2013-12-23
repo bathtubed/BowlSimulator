@@ -2,7 +2,7 @@
 
 const int Frame::Roll(PINS * const n)
 {
-  if(*n > pins.getPinCount() || n==NULL || stage==COMPLETE)
+  if(*n > pins.getPinCount() || n==NULL)
     return FAIL;
   if(stage == FIRST)
     roll = n;

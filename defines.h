@@ -12,7 +12,7 @@ typedef unsigned short UINT16;
 // Specific Types
 typedef UINT16 AVG;
 typedef UINT8 PIN_ID;
-typedef char PINS;
+typedef UINT16 PINS;
 
 inline float getRand() {return float(rand())/float(RAND_MAX);};
 

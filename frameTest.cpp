@@ -12,17 +12,18 @@ void printPins(const PinSet& pins)
 
 int main(void)
 {
-  PINS rolls[21] = {0};
-  Frame game[10];
+  PINS rolls[23] = {0};
+  Frame game[N_FRAMES+2];
   int p;
   int rslt;
-  for(UINT8 f = 0, r = 0; f < N_FRAMES; f++)
+  UINT8 r = 0;
+  for(UINT8 f = 0; f < N_FRAMES; f++)
   {
-    std::cout<<"Frame "<<int(f)<<std::endl;
+    std::cout<<"Frame "<<int(f+1)<<std::endl;
     std::cout<<"First Roll: ";
     std::cin>>p;
     rolls[r] = p;
-    switch(game[f].Roll(rolls+(r++)))
+    switch(rslt = game[f].Roll(rolls+(r++)))
     {  
     case Frame::STRIKE:
       std::cout<<"Strike!"<<std::endl;
@@ -33,7 +34,7 @@ int main(void)
       std::cout<<"Roll Spare: ";
       std::cin>>p;
       rolls[r] = p;
-      if(game[f].Roll(rolls+(r++)) >= 0)
+      if((rslt = game[f].Roll(rolls+(r++))) >= 0)
       {
 	break;
       }
@@ -49,5 +50,37 @@ int main(void)
     
     printPins(game[f].GetPinSet());
   }
+  
+  if(game[N_FRAMES-1].GetMark())
+  {
+    int frame = 0;
+    for(UINT8 bonuses = (rslt == Frame::STRIKE? 2:1); bonuses > 0; bonuses--, frame++)
+    {
+      std::cout<<"Bonus Ball: ";
+      std::cin>>p;
+      rolls[r] = p;
+      switch(rslt=game[N_FRAMES+frame].Roll(rolls+(r++)))
+      {
+      case Frame::STRIKE:
+	std::cout<<"Strike!"<<std::endl;
+	break;
+      case Frame::SUCCESS:
+	if(bonuses == 2)
+	  frame--;
+	break;
+      case Frame::FAIL:
+	std::cerr<<"You fucked up the roll in the bonus round, come on now."<<std::endl;
+	return -1;
+      }
+    }
+  }
+  
+  PINS total = 0;
+  
+  for(UINT8 g = 0; g < N_FRAMES; g++)
+    total += game[g].GetTotal();
+    
+  std::cout<<"Your Score "<<int(total)<<std::endl;
+  
   return 0;
 }
