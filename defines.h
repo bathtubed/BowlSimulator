@@ -2,6 +2,7 @@
 #define _HEADER_H_
 
 #include <stdlib.h>
+#include <cstdlib>
 #include <iostream>
 
 // Generic Types
@@ -12,6 +13,8 @@ typedef unsigned short UINT16;
 typedef UINT16 AVG;
 typedef UINT8 PIN_ID;
 typedef char PINS;
+
+float getRand() {return rand()/RAND_MAX;};
 
 // Important constants
 #define N_PINS 10
