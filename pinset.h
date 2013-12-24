@@ -20,6 +20,8 @@ public:
   const bool getPin(const PIN_ID id) const {return pins & maskPin(id);}; // returns state of pin at id
   const bool knockDown(const UINT16 p); // exclusive or's p with pins, knocking them down
   const PINS getPinCount() const;  // returns number of up pins
+  const float getAverageDist(const PIN_ID id) const;
+  const float getX(const PIN_ID id) const;
 };
 
 

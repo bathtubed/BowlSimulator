@@ -22,6 +22,7 @@ int main(void)
     std::cout<<"Frame "<<int(f+1)<<std::endl;
     std::cout<<"First Roll: ";
     std::cin>>p;
+    std::cin.ignore(999, '\n');
     rolls[r] = p;
     switch(rslt = game[f].Roll(rolls+(r++)))
     {  
@@ -33,6 +34,7 @@ int main(void)
       printPins(game[f].GetPinSet());
       std::cout<<"Roll Spare: ";
       std::cin>>p;
+      std::cin.ignore(999, '\n');
       rolls[r] = p;
       if((rslt = game[f].Roll(rolls+(r++))) >= 0)
       {
@@ -58,6 +60,7 @@ int main(void)
     {
       std::cout<<"Bonus Ball: ";
       std::cin>>p;
+      std::cin.ignore(999, '\n');
       rolls[r] = p;
       switch(rslt=game[N_FRAMES+frame].Roll(rolls+(r++)))
       {

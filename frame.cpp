@@ -10,15 +10,16 @@ const int Frame::Roll(PINS * const n)
   if(GetTotal() >= N_PINS && !mark)
     mark = true;
   
+  PinSet a = pins;
   float sumWeights = 0.0, r;
   for(PIN_ID i = 0; i < N_PINS; i++)
   {
-    if(!pins.getPin(i))
+    if(!a.getPin(i))
       continue;
-    sumWeights += PinSet::GetWeight(i);
+    sumWeights += PinSet::GetWeight(i)*(K-a.getAverageDist(i))/K;
   }
   
-  
+  float derp;
   
   for(PINS p = 0; p < *n; p++)
   {
@@ -28,12 +29,12 @@ const int Frame::Roll(PINS * const n)
       if(!pins.getPin(q))
 	continue;
       
-      r -= PinSet::GetWeight(q);
+      r -= (derp = PinSet::GetWeight(q)*(K-a.getAverageDist(q))/K);
       
       if(r <= 0)
       {
 	pins.knockDown(PinSet::maskPin(q));
-	sumWeights -= PinSet::GetWeight(q);
+	sumWeights -= derp;
 	break;
       }
     }
