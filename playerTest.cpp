@@ -14,7 +14,7 @@ int main(int argc, char **argv)
   {
     for(PIN_ID id = 0; argv[4][id] != NULL; id++)
     {
-      if(argv[id] == 0)
+      if(argv[4][id] == '0')
         pins.knockDown(PinSet::maskPin(id));
     }
   }

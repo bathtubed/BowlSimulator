@@ -19,7 +19,7 @@ const PINS Player::GetRoll(const PinSet& pins) const
     total++;
   }
   
-  float endPerc = total/sum + standDev*(getRand()-0.5);  //modified to a random effect depending on your consistency
+  float endPerc = sum/total * (1+(standDev*(getRand()-0.5)));  //modified to a random effect depending on your consistency
   endPerc = (kPlayer-endPerc)/kPlayer;  //end distance probability
   endPerc *= pins.getPinCount();
   endPerc = roundf(endPerc);
