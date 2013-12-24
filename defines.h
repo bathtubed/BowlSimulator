@@ -22,7 +22,7 @@ inline float abs(T a) {return a > 0? a:-a;};
 #define N_PINS 10
 #define N_FRAMES 10
 #define PERFECT_GAME 300
-#define K 4.0
+#define K 5.5
 
 // Important Files
 #define PIN_WEIGHTS "pin_weights.txt"
