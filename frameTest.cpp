@@ -26,10 +26,10 @@ int main(void)
     rolls[r] = p;
     switch(rslt = game[f].Roll(rolls+(r++)))
     {  
-      break;
-      
     case Frame::STRIKE:
       std::cout<<"Strike!"<<std::endl;
+      break;
+      
     case Frame::SUCCESS:
       printPins(game[f].GetPinSet());
       std::cout<<"Roll Spare: ";
