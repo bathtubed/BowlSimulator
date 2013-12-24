@@ -20,7 +20,7 @@ private:
 public:
   const Stage_t GetStage() const {return stage;};
   const PINS GetTotal() const {return total = (mark? (roll[ROLL] + roll[SPARE] + roll[BONUS]):(roll[ROLL] + roll[SPARE]));};
-  const PinSet GetPinSet() const {return pins;};
+  const PinSet &GetPinSet() const {return pins;};
   const bool GetMark() const {return mark;};
   const int Roll(PINS * const n);
   

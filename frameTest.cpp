@@ -25,7 +25,7 @@ int main(void)
     std::cin.ignore(999, '\n');
     rolls[r] = p;
     switch(rslt = game[f].Roll(rolls+(r++)))
-    {  
+    {
     case Frame::STRIKE:
       std::cout<<"Strike!"<<std::endl;
       break;

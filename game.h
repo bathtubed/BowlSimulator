@@ -10,20 +10,24 @@ using std::vector;
 class Game
 {
 public:
-  typedef PINS *ROLLS;
-  typedef vector<Frame> FRAME_SET
+  typedef vector<PINS> ROLLS;
+  typedef vector<Frame> FRAME_SET;
+  enum {FAIL=-1, END=0, SUCCESS, STRIKE, SPARE};
   
 private:
   ROLLS rollStream;
   FRAME_SET frames;
+  UINT8 nFrames;
   mutable PINS total;
   
 public:
-  Game(UINT8 nFrames): total(0), ROLLS(new PINS [2*nFrames+1]) {};
-  const PinSet& GetPinset() const {return frames.back().GetPinset();};
-  const PinSet& GetPinset(const UINT8 i) const {return frames[i >= frames.size()? frames.size()-1:i].GetPinset();};
+  Game(const UINT8 nF=N_FRAMES): total(0) {ChangeFrames(nF);};
+  void ChangeFrames(const UINT8 i);
+  const PinSet& GetPinSet() const {return frames.back().GetPinSet();};
+  const PinSet& GetPinSet(const UINT8 i) const {return frames[i >= frames.size()? frames.size()-1:i].GetPinSet();};
   const UINT8 GetCurFrame() const {return frames.size()-1;};
   const int Roll(const PIN_ID &n);
+  const PINS GetTotal() const;
 };
 
 
