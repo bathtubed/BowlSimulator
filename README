@@ -1,4 +1,17 @@
 Re mastering of bowling program created by Dr. Joseph Ward
 
-The Player program can be used to create, edit, and delete bowler files.
-The Simulate program can be used to play a game.
+Use BowlSimulator with any number of player files after it to print projected scoresheets
+	BowlSimulator eric.txt joe.txt
+
+To redirect the output to a file, use a redirection symbol
+	BowlSimulator eric.txt > output.txt
+
+The format of a player file is self explanatory, use the eric.txt as an example.
+The scores are projected based off of your bowling average, as well as your "dev"
+Dev stands for deviation, the higher your deviation value, the higher your individual frames and games will fluctuate in scores.
+0 will allow for nearly no deviation
+1 will allow for a small amount
+2 is generally good for a human
+3 is out right
+The user should adjust this value as they see fit
+
