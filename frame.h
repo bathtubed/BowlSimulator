@@ -20,8 +20,13 @@ private:
 public:
   const Stage_t GetStage() const {return stage;};
   const PINS GetTotal() const {return total = (mark? (roll[ROLL] + roll[SPARE] + roll[BONUS]):(roll[ROLL] + roll[SPARE]));};
+  const PINS GetFirst() const;
+  const PINS GetSpare() const;
+//  const PINS GetBonus() const;
   const PinSet &GetPinSet() const {return pins;};
   const bool GetMark() const {return mark;};
+  const bool isStrike() const {return roll[ROLL] == N_PINS;};
+  const bool isSpare() const {return GetMark() && !isStrike();};
   const int Roll(PINS * const n);
   
   Frame(PINS * const init=NULL): roll(init), stage(FIRST), mark(false), total(0) {};

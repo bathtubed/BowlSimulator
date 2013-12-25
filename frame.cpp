@@ -65,3 +65,22 @@ const int Frame::Roll(PINS * const n)
   
   return rtrn;
 }
+
+const PINS Frame::GetFirst() const
+{
+  if(stage != COMPLETE)
+    return N_PINS + 1;
+  
+  return roll[ROLL];
+}
+
+const PINS Frame::GetSpare() const
+{
+  if(stage != COMPLETE)
+    return N_PINS + 1;
+  
+  if(isStrike())
+    return N_PINS + 1;
+  
+  return roll[SPARE];
+}

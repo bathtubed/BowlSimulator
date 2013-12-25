@@ -9,7 +9,7 @@ const PINS Player::GetRoll(const PinSet& pins) const
   float kPlayer = ((float(average))/(float(PERFECT_GAME)/2));
   kPlayer *= kPlayer*K;
   float sum;
-  UINT8 total;
+  UINT8 total=0;
   for(PIN_ID p = 0; p < N_PINS; p++)
   {
     if(!pins.getPin(p))

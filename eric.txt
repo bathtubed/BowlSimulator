@@ -1,0 +1,4 @@
+name:eric
+average:300
+dev:0
+
