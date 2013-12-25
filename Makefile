@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-g -c
+CFLAGS=-g -c -std=gnu++11
 LDFLAGS=-g
 SOURCES=pinset.cpp frame.cpp player.cpp
 OBJECTS=$(SOURCES:.cpp=.o)

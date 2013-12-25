@@ -16,21 +16,15 @@ void printPins(const PinSet& pins)
 
 int main(void)
 {
-  using std::cout;
-  using std::cin;
-  using std::endl;
-  using std::cerr;
-  using std::stoi;
-  using std::invalid_argument;
-  using std::out_of_range;
-
+  using namespace std;
+  
   Game myGame;
   int in;
   int rslt = Game::SUCCESS;
   string buf;
   while(rslt > Game::END)
   {
-    cout<<"Frame "<<myGame.GetCurFrame();
+    cout<<"Frame "<<int(myGame.GetCurFrame()+1)<<endl;
     printPins(myGame.GetPinSet());
     cout<<"Roll: ";
     getline(cin, buf);
@@ -52,18 +46,18 @@ int main(void)
     switch(rslt = myGame.Roll(in))
     {
     case Game::STRIKE:
-      cout<<"Strike!"<<endl;
+      cout<<"Strike!"<<endl<<endl;
       break;
     case Game::SPARE:
-      cout<<"Spare!"<<endl;
+      cout<<"Spare!"<<endl<<endl;
       break;
     case Game::SUCCESS:
       break;
     case Game::FAIL:
-      cerr<<"Wat r u doin"<<endl;
+      cerr<<"Wat r u doin"<<endl<<endl;
       break;
     case Game::END:
-      cout<<"All done yay!"<<endl;
+      cout<<"All done yay!"<<endl<<endl;
       break;
     }
   }

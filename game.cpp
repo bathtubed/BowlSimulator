@@ -2,19 +2,7 @@
 
 const int Game::Roll(const PIN_ID &n)
 {
-  
-  if(frames.size() > nFrames)
-  {
-    if(!frames[frames.size()-2].GetMark())
-      return END;
-    
-    if(frames.size() > nFrames + 2)
-      return END;
-    
-    if(frames.size() > nFrames + 1 && rollStream[rollStream.size()-1] < N_PINS && rollStream[rollStream.size()-2] < N_PINS)
-      return END;
-  }
-  
+  int rtrn;
   rollStream.push_back(n);
   
   if(frames.empty())
@@ -25,28 +13,59 @@ const int Game::Roll(const PIN_ID &n)
   case Frame::STRIKE:
     if(frames.back().GetStage() == Frame::COMPLETE)
       frames.push_back(NULL);
-    return STRIKE;
+    
+    rtrn = STRIKE;
+    break;
     
   case Frame::SUCCESS:
     if(frames.back().GetStage() == Frame::COMPLETE)
+    {
       frames.push_back(NULL);
-    
-    if(frames.back().GetMark())
-      return SPARE;
+      
+      if(frames[frames.size()-2].GetMark())
+        rtrn = SPARE;
+      else
+        rtrn = SUCCESS;
+    }
     else
-      return SUCCESS;
+    {
+      if(frames.back().GetMark())
+        rtrn = SPARE;
+      else
+        rtrn = SUCCESS;
+    }
+    break;
     
   case Frame::FAIL:
     return FAIL;
   }
+  
+  if(bonuses > 0)
+  {
+    if(--bonuses == 0)
+      return END;
+  }
+  
+  if(frames.size() == nFrames+1 && bonuses == 0)
+  {
+    bonuses = (rtrn == STRIKE? 2:(rtrn == SPARE? 1:0));
+  }
+  
+  if(frames.size() > nFrames && bonuses == 0)
+  {
+    return END;
+  }
+  
+  return rtrn;
+      
 }
 
 const PINS Game::GetTotal() const
 {
   total = 0;
-  for(FRAME_SET::const_iterator i = frames.begin(); i != frames.end(); i++)
+  for(UINT8 i = 0; i < nFrames; i++)
   {
-    total += i->GetTotal();
+    total += frames[i].GetTotal();
   }
   
   return total;

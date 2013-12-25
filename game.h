@@ -6,7 +6,6 @@
 
 using std::vector;
 
-
 class Game
 {
 public:
@@ -18,10 +17,11 @@ private:
   ROLLS rollStream;
   FRAME_SET frames;
   UINT8 nFrames;
+  UINT8 bonuses;
   mutable PINS total;
   
 public:
-  Game(const UINT8 nF=N_FRAMES): total(0) {ChangeFrames(nF);};
+  Game(const UINT8 nF=N_FRAMES): total(0), bonuses(0) {ChangeFrames(nF);};
   void ChangeFrames(const UINT8 i);
   const PinSet& GetPinSet() const {return frames.back().GetPinSet();};
   const PinSet& GetPinSet(const UINT8 i) const {return frames[i >= frames.size()? frames.size()-1:i].GetPinSet();};
