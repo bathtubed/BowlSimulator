@@ -1,8 +1,13 @@
 #include "playerGame.h"
+#include "scoresheet.h"
+
+#include <time.h>
 
 int main(int argc, char **argv)
 {
   using namespace std;
+  
+  srand(time(NULL));
   
   if(argc < 2)
   {
@@ -33,7 +38,7 @@ int main(int argc, char **argv)
 	
       case Game::FAIL:
       case Game::END:
-	cerr<<"WAT!"<<endl;
+	//cerr<<"WAT!"<<endl;
 	f=N_FRAMES;
 	break;
       }
@@ -44,10 +49,20 @@ int main(int argc, char **argv)
       else
 	cout<<int(theirGame.GetFrame(theirGame.GetCurFrame() - 1).GetSpare());
       
-      cout<<endl;
+      if(f == N_FRAMES)
+      {
+	cout<<" ";
+        if(theirGame.GetFrame(theirGame.GetCurFrame() - 1).GetBonus() == N_PINS + 1)
+	  cout<<"-";
+        else
+	  cout<<int(theirGame.GetFrame(theirGame.GetCurFrame() - 1).GetBonus());
+      }
+      
+      cout<<endl<<endl;
     }
     
     cout<<theirGame.GetPlayer().GetName()<<" scored a "<<theirGame.GetTotal()<<endl;
+    printScoreSheet(theirGame, cout);
   }
   
 }

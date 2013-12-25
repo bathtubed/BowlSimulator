@@ -1,14 +1,14 @@
 #include "player.h"
 
-#include <time.h>
+//#include <time.h>
 
 
 const PINS Player::GetRoll(const PinSet& pins) const
 {
-  srand(time(NULL));
+  //srand(time(NULL));
   float kPlayer = ((float(average))/(float(PERFECT_GAME)/2));
   kPlayer *= kPlayer*K;
-  float sum;
+  float sum = 0.0;
   UINT8 total=0;
   for(PIN_ID p = 0; p < N_PINS; p++)
   {

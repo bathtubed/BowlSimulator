@@ -1,4 +1,4 @@
 name:eric
-average:300
-dev:0
+average:150
+dev:2
 

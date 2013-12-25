@@ -84,3 +84,10 @@ const PINS Frame::GetSpare() const
   
   return roll[SPARE];
 }
+
+const PINS Frame::GetBonus() const
+{
+  if(!GetMark())
+    return N_PINS + 1;
+  return roll[BONUS];
+}

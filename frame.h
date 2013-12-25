@@ -22,7 +22,7 @@ public:
   const PINS GetTotal() const {return total = (mark? (roll[ROLL] + roll[SPARE] + roll[BONUS]):(roll[ROLL] + roll[SPARE]));};
   const PINS GetFirst() const;
   const PINS GetSpare() const;
-//  const PINS GetBonus() const;
+  const PINS GetBonus() const;
   const PinSet &GetPinSet() const {return pins;};
   const bool GetMark() const {return mark;};
   const bool isStrike() const {return roll[ROLL] == N_PINS;};

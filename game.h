@@ -29,7 +29,7 @@ public:
   const PinSet& GetPinSet() const {return frames.back().GetPinSet();};
   const PinSet& GetPinSet(const UINT8 i) const {return frames[i >= frames.size()? frames.size()-1:i].GetPinSet();};
   const UINT8 GetCurFrame() const {return frames.size()-1;};
-  const Frame& GetFrame(const UINT8 f) {return frames[f];};
+  const Frame& GetFrame(const UINT8 f) const {return frames[f];};
   const int Roll(const PIN_ID &n);
   const PINS GetTotal() const;
 };
